@@ -3,32 +3,38 @@
 # Contributor: Abhishek Dasgupta <abhidg@gmail.com>
 # Contributor: David Rosenstrauch <darose@darose.net>
 
-pkgname=ddclient
+pkgprefix=ddclient
+pkgname=$pkgprefix-cloudflare
 pkgver=3.8.2
 pkgrel=1
 pkgdesc="Update dynamic DNS entries for accounts on many dynamic DNS services"
 arch=('any')
 url="http://ddclient.sourceforge.net"
 license=('GPL2')
-depends=('perl-io-socket-ssl' 'perl-digest-sha1' 'net-tools')
+depends=('perl-io-socket-ssl' 'perl-digest-sha1' 'net-tools' 'perl-json-any')
 backup=('etc/ddclient/ddclient.conf')
-source=(http://downloads.sourceforge.net/sourceforge/$pkgname/$pkgname-$pkgver.tar.bz2
-        $pkgname.service)
+cloudflare_patch="ddclient-3.8.0-cloudflare-26-09-2013"
+source=(http://downloads.sourceforge.net/sourceforge/$pkgprefix/$pkgprefix-$pkgver.tar.bz2
+        "http://blog.peter-r.co.uk/uploads/$cloudflare_patch.patch"
+        $pkgprefix.service)
 md5sums=('62cd5fe93ced2c794d5f441f9d908841'
+         'a6256ce3f78465e9f2bb3ddb40633726'
          '1bcd3e75309e658931532adef2a0608a')
 
 package() {
-  cd "$srcdir"/$pkgname-$pkgver
+  cd "$srcdir"/$pkgprefix-$pkgver
 
-  install -Dm755 $pkgname "$pkgdir"/usr/bin/$pkgname
-  install -Dm600 sample-etc_$pkgname.conf "$pkgdir"/etc/$pkgname/$pkgname.conf
-  install -d "$pkgdir"/var/cache/$pkgname
-  install -Dm644 "$srcdir"/$pkgname.service "$pkgdir"/usr/lib/systemd/system/$pkgname.service
+  patch < ../../$cloudflare_patch.patch
 
-  install -Dm644 README.cisco "$pkgdir"/usr/share/doc/$pkgname/README.cisco
-  install -Dm644 README.md "$pkgdir"/usr/share/doc/$pkgname/README.md
-  install -Dm644 README.ssl "$pkgdir"/usr/share/doc/$pkgname/README.ssl
-  install -Dm644 sample-etc_cron.d_$pkgname "$pkgdir"/usr/share/doc/$pkgname/sample-etc_cron.d_$pkgname
-  install -Dm644 COPYING "$pkgdir"/usr/share/licenses/$pkgname/COPYING
-  install -Dm644 COPYRIGHT "$pkgdir"/usr/share/licenses/$pkgname/COPYRIGHT
+  install -Dm755 $pkgprefix "$pkgdir"/usr/bin/$pkgprefix
+  install -Dm600 sample-etc_$pkgprefix.conf "$pkgdir"/etc/$pkgprefix/$pkgprefix.conf
+  install -d "$pkgdir"/var/cache/$pkgprefix
+  install -Dm644 "$srcdir"/$pkgprefix.service "$pkgdir"/usr/lib/systemd/system/$pkgprefix.service
+
+  install -Dm644 README.cisco "$pkgdir"/usr/share/doc/$pkgprefix/README.cisco
+  install -Dm644 README.md "$pkgdir"/usr/share/doc/$pkgprefix/README.md
+  install -Dm644 README.ssl "$pkgdir"/usr/share/doc/$pkgprefix/README.ssl
+  install -Dm644 sample-etc_cron.d_$pkgprefix "$pkgdir"/usr/share/doc/$pkgprefix/sample-etc_cron.d_$pkgprefix
+  install -Dm644 COPYING "$pkgdir"/usr/share/licenses/$pkgprefix/COPYING
+  install -Dm644 COPYRIGHT "$pkgdir"/usr/share/licenses/$pkgprefix/COPYRIGHT
 }
