@@ -1,5 +1,5 @@
-# $Id: PKGBUILD 106350 2014-02-28 21:45:21Z jsteel $
-# Maintainer: Jonathan Steel <jsteel@aur.archlinux.org>
+# Maintainer: Yachi Lo <yaachi@gmail>
+# Contributor: Jonathan Steel <jsteel@aur.archlinux.org>
 # Contributor: Abhishek Dasgupta <abhidg@gmail.com>
 # Contributor: David Rosenstrauch <darose@darose.net>
 
@@ -7,9 +7,9 @@ pkgprefix=ddclient
 pkgname=$pkgprefix-cloudflare
 pkgver=3.8.2
 pkgrel=1
-pkgdesc="Update dynamic DNS entries for accounts on many dynamic DNS services"
+pkgdesc="Update dynamic DNS entries for accounts on many dynamic DNS services with Cloudflare support"
 arch=('any')
-url="http://ddclient.sourceforge.net"
+url="http://blog.peter-r.co.uk/cloudflare-ddclient-patch.html"
 license=('GPL2')
 depends=('perl-io-socket-ssl' 'perl-digest-sha1' 'net-tools' 'perl-json-any')
 backup=('etc/ddclient/ddclient.conf')
