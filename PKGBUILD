@@ -15,7 +15,7 @@ depends=('perl-io-socket-ssl' 'perl-digest-sha1' 'net-tools' 'perl-json-any')
 backup=('etc/ddclient/ddclient.conf')
 cloudflare_patch="ddclient-3.8.0-cloudflare-26-09-2013"
 source=(http://downloads.sourceforge.net/sourceforge/$pkgprefix/$pkgprefix-$pkgver.tar.bz2
-        "http://blog.peter-r.co.uk/uploads/$cloudflare_patch.patch"
+        $cloudflare_patch.patch
         $pkgprefix.service)
 md5sums=('62cd5fe93ced2c794d5f441f9d908841'
          'a6256ce3f78465e9f2bb3ddb40633726'

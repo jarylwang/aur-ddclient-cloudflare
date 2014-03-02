@@ -1,3 +1,5 @@
-ddclient-*
+ddclient-*.tar.bz2
+ddclient-*.any.pkg.tar.xz
+ddclient-cloudflare-*-any.pkg.tar.xz
 pkg/
 src/
