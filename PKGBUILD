@@ -12,6 +12,7 @@ arch=('any')
 url="http://blog.peter-r.co.uk/cloudflare-ddclient-patch.html"
 license=('GPL2')
 depends=('perl-io-socket-ssl' 'perl-digest-sha1' 'net-tools' 'perl-json-any')
+conflicts=('ddclient')
 backup=('etc/ddclient/ddclient.conf')
 cloudflare_patch="ddclient-3.8.0-cloudflare-26-09-2013"
 source=(http://downloads.sourceforge.net/sourceforge/$pkgprefix/$pkgprefix-$pkgver.tar.bz2
